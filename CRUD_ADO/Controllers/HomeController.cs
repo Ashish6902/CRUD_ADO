@@ -1,8 +1,10 @@
-﻿using System;
+﻿using CRUD_ADO.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace CRUD_ADO.Controllers
 {
@@ -10,7 +12,9 @@ namespace CRUD_ADO.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            DBcontext dbcontext = new DBcontext();
+            List<Student> obj = dbcontext.GetData();
+            return View(obj);
         }
 
         public ActionResult About()
