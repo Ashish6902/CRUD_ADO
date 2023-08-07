@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CRUD_ADO.Models
 {
@@ -31,6 +32,67 @@ namespace CRUD_ADO.Models
             }
             conn.Close();
             return students_data;
+        }
+        public bool createData(Student stu)
+        {
+            SqlConnection conn = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand("InsertData", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Fname", stu.FirstName);
+            cmd.Parameters.AddWithValue("@Lname", stu.LastName);
+            cmd.Parameters.AddWithValue("@stream", stu.Stream);
+            cmd.Parameters.AddWithValue("@marks", stu.Marks);
+            conn.Open();
+            int i =cmd.ExecuteNonQuery();
+            conn.Close();
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }   
+        }
+        public bool UpdateData(Student stu)
+        {
+            SqlConnection conn = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand("updateData", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", stu.ID);
+            cmd.Parameters.AddWithValue("@Fname", stu.FirstName);
+            cmd.Parameters.AddWithValue("@Lname", stu.LastName);
+            cmd.Parameters.AddWithValue("@stream", stu.Stream);
+            cmd.Parameters.AddWithValue("@marks", stu.Marks);
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool DeletData(Student stu)
+        {
+            SqlConnection conn = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand("DeletData", conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@stid", stu.ID);
+            conn.Open();
+            int i = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (i > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

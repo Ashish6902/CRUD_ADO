@@ -6,6 +6,32 @@
 
 <h2>Index</h2>
 
+@if (TempData["InsertMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Success!</strong> @TempData["InsertMessage"].
+    </div>
+}
+
+@if (TempData["UpdateMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>Success!</strong> @TempData["UpdateMessage"].
+    </div>
+}
+
+@if (TempData["DeleteMessage"] != null)
+{
+   <div class="alert alert-danger alert-dismissible">
+       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+       <strong>Deleted!</strong> @TempData["DeleteMessage"].
+   </div>
+}
+
+
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,26 +55,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stream)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marks)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stream)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marks)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
