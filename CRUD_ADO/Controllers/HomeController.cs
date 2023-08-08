@@ -112,5 +112,12 @@ namespace CRUD_ADO.Controllers
             var row = dBcontext.GetData().Find(model => model.ID == id);
             return View(row);
         }
+        
+        public ActionResult Search(int id)
+        {
+            DBcontext dbcontext = new DBcontext();
+            List<Student> obj = dbcontext.SearchData(id);
+            return View(obj);
+        }
     }
 }

@@ -1,34 +1,10 @@
 ﻿@model IEnumerable<CRUD_ADO.Models.Student>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Search";
 }
 
-<h2>Index</h2>
-
-@if (TempData["InsertMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Success!</strong> @TempData["InsertMessage"].
-    </div>
-}
-
-@if (TempData["UpdateMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Success!</strong> @TempData["UpdateMessage"].
-    </div>
-}
-
-@if (TempData["DeleteMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        <strong>Deleted!</strong> @TempData["DeleteMessage"].
-    </div>
-}
+<h2>Search</h2>
 
 @using (Html.BeginForm("Search", "Home", FormMethod.Get))
 {
@@ -36,12 +12,7 @@
     <input type="submit" value="Search" />
 }
 
-
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-bordered table-hover">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -54,9 +25,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Marks)
-        </th>
-        <th>
-            Operatinos
         </th>
         <th></th>
     </tr>
@@ -81,7 +49,11 @@
                 @Html.ActionLink("Details", "Details", new { id = item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             </td>
+
         </tr>
     }
 
 </table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
